@@ -31,7 +31,7 @@ Required parameters:
 | :-------------   | :---- | :-------------|
 | schema     | Object | The schema object |
 | schema.slug     | String | The github enterprise slug |
-| schema.username      | String | The github user's login name |
+| schema.login      | String | The github user's login name |
 | schema.token | String | The github token to interact with the graphql api |
 
 #### Expected Outcome

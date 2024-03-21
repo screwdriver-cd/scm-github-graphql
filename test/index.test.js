@@ -59,7 +59,7 @@ describe('GithubGraphQL', () => {
 
     it('should get enterprise user account', async () => {
         const slug = 'slug';
-        const username = 'ai_humanoid';
+        const login = 'ai_humanoid';
         const data = {
             enterprise: {
                 members: {
@@ -73,21 +73,21 @@ describe('GithubGraphQL', () => {
 
         const result = await githubGql.getEnterpriseUserAccount({
             slug,
-            username,
+            login,
             token
         });
 
         assert.deepEqual(result, data.enterprise.members.nodes[0]);
         assert.calledWith(githubGql.sdGql.query, {
             query: queries.GetEnterpriseUserAccount,
-            variables: { slug, query: username },
+            variables: { slug, query: login },
             token
         });
     });
 
     it('should return null if no enterprise user account', async () => {
         const slug = 'slug';
-        const username = 'ai_humanoid';
+        const login = 'ai_humanoid';
         const data = {
             enterprise: {
                 members: {
@@ -100,14 +100,14 @@ describe('GithubGraphQL', () => {
 
         const result = await githubGql.getEnterpriseUserAccount({
             slug,
-            username,
+            login,
             token
         });
 
         assert.equal(result, null);
         assert.calledWith(githubGql.sdGql.query, {
             query: queries.GetEnterpriseUserAccount,
-            variables: { slug, query: username },
+            variables: { slug, query: login },
             token
         });
     });

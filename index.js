@@ -6,7 +6,7 @@ const queries = require('./queries');
 class GithubScmGraphQL {
     /**
      * constructor
-     * @param {Object} config
+     * @param {Object} config            The config object
      * @param {String} config.graphQlUrl The graphql url
      */
     constructor(config) {
@@ -19,16 +19,16 @@ class GithubScmGraphQL {
      * Gets the enterprise user account schema
      * @param {String} config              The config object
      * @param {String} config.slug         The github enterprise slug
-     * @param {String} config.username     The github username
-     * @param {String} config.token             Access token
+     * @param {String} config.login        The github user login
+     * @param {String} config.token        The access token
      * @returns Object https://docs.github.com/en/enterprise-cloud@latest/graphql/reference/objects#enterpriseuseraccount
      */
     async getEnterpriseUserAccount(config) {
-        const { slug, username, token } = config;
+        const { slug, login, token } = config;
 
         const { data } = await this.sdGql.query({
             query: queries.GetEnterpriseUserAccount,
-            variables: { slug, query: username },
+            variables: { slug, query: login },
             token
         });
 
@@ -45,9 +45,9 @@ class GithubScmGraphQL {
 
     /**
      * Helper method to paginate the enterprise members recursively
-     * @param {*} slug
-     * @param {*} cursor
-     * @param {*} members
+     * @param {*} config   The config object
+     * @param {*} cursor   The current page
+     * @param {*} members  The list of members
      * @returns Array https://docs.github.com/en/enterprise-cloud@latest/graphql/reference/unions#enterprisemember
      */
     async _listEnterpriseMembersHelper(config, cursor, allMembers = []) {
@@ -75,8 +75,9 @@ class GithubScmGraphQL {
 
     /**
      * List of enterprise members schema
-     * @param {String} config      The config object
-     * @param {String} config.slug The github enterprise slug
+     * @param {String} config       The config object
+     * @param {String} config.slug  The github enterprise slug
+     * @param {String} config.token The access token
      * @returns Array https://docs.github.com/en/enterprise-cloud@latest/graphql/reference/unions#enterprisemember
      */
     async listEnterpriseMembers(config) {
@@ -85,9 +86,9 @@ class GithubScmGraphQL {
 
     /**
      * Gets the the github user schema
-     * @param {Object} config             Config object
-     * @param {String} config.login     Github username
-     * @param {String} config.toke      Access token
+     * @param {Object} config             The config object
+     * @param {String} config.login       The github user login
+     * @param {String} config.toke        The access token
      * @returns Object https://docs.github.com/en/enterprise-cloud@latest/graphql/reference/objects#user
      * or https://docs.github.com/en/enterprise-cloud@latest/graphql/reference/objects#enterpriseuseraccount
      */
