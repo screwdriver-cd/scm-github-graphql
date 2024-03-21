@@ -32,7 +32,7 @@ Required parameters:
 | schema     | Object | The schema object |
 | schema.slug     | String | The github enterprise slug |
 | schema.username      | String | The github user's login name |
-| schema.token | String | some_token | The github token to interact with the graphql api |
+| schema.token | String | The github token to interact with the graphql api |
 
 #### Expected Outcome
 
@@ -45,7 +45,7 @@ Required parameters:
 | :-------------   | :---- | :-------------|
 | schema     | Object | The schema object |
 | schema.slug     | String | The github enterprise slug |
-| schema.token | String | some_token | The github token to interact with the graphql api |
+| schema.token | String | The github token to interact with the graphql api |
 
 #### Expected Outcome
 
@@ -58,7 +58,7 @@ Required parameters:
 | :-------------   | :---- | :-------------|
 | schema     | Object | The schema object |
 | schema.login     | String | The github user's login name |
-| schema.token | String | some_token | The github token to interact with the graphql api |
+| schema.token | String | The github token to interact with the graphql api |
 
 ##### Expected Outcome
 Returns the github user based on schema https://docs.github.com/en/enterprise-cloud@latest/graphql/reference/objects#user

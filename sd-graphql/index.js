@@ -57,7 +57,7 @@ class SDGraphQLClient {
      * @param {String} schema.mutation    The graphql mutation
      * @param {Object} schema.variables   The variables to use in the mutation
      * @param {Object} schema.token       The token to use for authentication
-     * @param {Object} options     The options to pass to the request
+     * @param {Object} schema.options     The options to pass to the request
      * @returns Promise
      */
     async mutate(schema) {

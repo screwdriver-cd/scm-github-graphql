@@ -20,6 +20,7 @@ class GithubScmGraphQL {
      * @param {String} config              The config object
      * @param {String} config.slug         The github enterprise slug
      * @param {String} config.username     The github username
+     * @param {String} config.token             Access token
      * @returns Object https://docs.github.com/en/enterprise-cloud@latest/graphql/reference/objects#enterpriseuseraccount
      */
     async getEnterpriseUserAccount(config) {
@@ -84,8 +85,9 @@ class GithubScmGraphQL {
 
     /**
      * Gets the the github user schema
-     * @param {String} config    The config object
-     * @param {String} login     The github username
+     * @param {Object} config             Config object
+     * @param {String} config.login     Github username
+     * @param {String} config.toke      Access token
      * @returns Object https://docs.github.com/en/enterprise-cloud@latest/graphql/reference/objects#user
      * or https://docs.github.com/en/enterprise-cloud@latest/graphql/reference/objects#enterpriseuseraccount
      */

@@ -12,7 +12,6 @@ sinon.assert.expose(assert, {
 describe('GithubGraphQL', () => {
     let githubGql;
     let GithubScmGraphQL;
-    // let sdGqlMock;
 
     const mockUser = {
         type: 'User',
