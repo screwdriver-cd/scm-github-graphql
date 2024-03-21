@@ -1,0 +1,42 @@
+{
+  "name": "screwdriver-scm-github-graphql",
+  "version": "1.0.0",
+  "description": "Github GraphQL SCM for Screwdriver",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "nyc --report-dir ./artifacts/coverage --reporter=lcov mocha --reporter mocha-multi-reporters --reporter-options configFile=./mocha.config.json --recursive --timeout 4000 --retries 1 --exit --allow-uncaught true --color true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/screwdriver-cd/scm-github-graphql.git"
+  },
+  "homepage": "https://github.com/screwdriver-cd/scm-github-graphql",
+  "bugs": "https://github.com/screwdriver-cd/screwdriver/issues",
+  "keywords": [
+    "screwdriver",
+    "yahoo"
+  ],
+  "license": "BSD-3-Clause",
+  "author": "Pritam Paul <pritamstyz4ever@gmail.com>",
+  "contributors": [],
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "eslint": "^7.32.0",
+    "eslint-config-screwdriver": "^5.0.1",
+    "mocha": "^10.3.0",
+    "mocha-multi-reporters": "^1.5.1",
+    "mocha-sonarqube-reporter": "^1.0.2",
+    "nyc": "^15.0.0",
+    "sinon": "^9.0.0"
+  },
+  "dependencies": {
+    "graphql-tag": "^2.12.6",
+    "rewire": "^7.0.0",
+    "rewiremock": "^3.14.5",
+    "screwdriver-request": "^2.0.1"
+  },
+  "release": {
+    "debug": false
+  }
+}
