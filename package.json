@@ -32,11 +32,11 @@
   },
   "dependencies": {
     "graphql-tag": "^2.12.6",
-    "rewire": "^7.0.0",
     "rewiremock": "^3.14.5",
     "screwdriver-request": "^2.0.1"
   },
   "release": {
+    "branches": ["main"],
     "debug": false
   }
 }
