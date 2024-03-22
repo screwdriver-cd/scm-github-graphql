@@ -33,8 +33,8 @@ describe('SDGraphQLClient', () => {
     it('should make a GraphQL query', async () => {
         // Test making a GraphQL query using SDGraphQLClient
         const query = `
-            query GetUser($username: String!) {
-                user(login: $username) {
+            query GetUser($login: String!) {
+                user(login: $login) {
                     name
                     email
                     login
@@ -43,7 +43,7 @@ describe('SDGraphQLClient', () => {
         `;
 
         const variables = {
-            username: 'ai_humanoid'
+            login: 'ai_humanoid'
         };
 
         const expectedResponse = {

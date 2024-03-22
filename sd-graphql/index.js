@@ -28,7 +28,7 @@ class SDGraphQLClient {
      * @param {String} schema              The schema object
      * @param {String} schema.query        The graphql query
      * @param {Object} schema.variables    The variables to use in the query
-     * @param {Object} schema.token        The token to use for authentication
+     * @param {String} schema.token        The token to use for authentication
      * @param {Object} schema.options      The options to pass to the request
      * @returns Promise
      */
@@ -56,7 +56,7 @@ class SDGraphQLClient {
      * @param {String} schema             The schema object
      * @param {String} schema.mutation    The graphql mutation
      * @param {Object} schema.variables   The variables to use in the mutation
-     * @param {Object} schema.token       The token to use for authentication
+     * @param {String} schema.token       The token to use for authentication
      * @param {Object} schema.options     The options to pass to the request
      * @returns Promise
      */
