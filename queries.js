@@ -7,7 +7,7 @@ module.exports.GetEnterpriseUserAccount = gql`
         enterprise(slug: $slug) {
             name
             id
-            members(query: $query, first: 1, role: MEMBER) {
+            members(query: $query, first: 1) {
                 totalCount
                 nodes {
                     type: __typename
