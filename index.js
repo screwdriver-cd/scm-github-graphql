@@ -36,7 +36,9 @@ class GithubScmGraphQL {
             const { members } = data.enterprise;
 
             if (members && members.totalCount === 1) {
-                return members.nodes[0];
+                return {
+                    type: 'EnterpriseUserAccount'
+                };
             }
         }
 

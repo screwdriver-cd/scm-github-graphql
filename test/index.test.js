@@ -77,7 +77,9 @@ describe('GithubGraphQL', () => {
             token
         });
 
-        assert.deepEqual(result, data.enterprise.members.nodes[0]);
+        assert.deepEqual(result, {
+            type: 'EnterpriseUserAccount'
+        });
         assert.calledWith(githubGql.sdGql.query, {
             query: queries.GetEnterpriseUserAccount,
             variables: { slug, query: login },

@@ -9,24 +9,12 @@ module.exports.GetEnterpriseUserAccount = gql`
             id
             members(query: $query, first: 1) {
                 totalCount
-                nodes {
-                    type: __typename
-                    ... on EnterpriseUserAccount {
-                        id
-                        name
-                        login
-                    }
-                    ... on User {
-                        id
-                        name
-                        login
-                    }
-                }
             }
         }
     }
 `;
 
+// needs `admin:enterprise` scope for EAU fragment
 module.exports.ListEnterpriseMembers = gql`
     query ListEnterpriseMembers($slug: String!, $cursor: String) {
         enterprise(slug: $slug) {
