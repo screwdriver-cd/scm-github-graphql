@@ -28,17 +28,22 @@ class GithubScmGraphQL {
 
         const { data } = await this.sdGql.query({
             query: queries.GetEnterpriseUserAccount,
-            variables: { slug, query: login },
+            variables: { login },
             token
         });
 
-        if (data && data.enterprise) {
-            const { members } = data.enterprise;
+        if (data && data.user && data.user.enterprises) {
+            const { totalCount, nodes, pageInfo } = data.user.enterprises;
 
-            if (members && members.totalCount === 1) {
-                return {
-                    type: 'EnterpriseUserAccount'
-                };
+            if (nodes && totalCount > 0 && pageInfo.hasNextPage === false) {
+                const enterprise = nodes.find(node => node.slug === slug);
+
+                if (enterprise) {
+                    return {
+                        login,
+                        type: 'EnterpriseUserAccount'
+                    };
+                }
             }
         }
 

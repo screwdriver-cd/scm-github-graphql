@@ -60,16 +60,31 @@ describe('GithubGraphQL', () => {
     it('should get enterprise user account', async () => {
         const slug = 'slug';
         const login = 'ai_humanoid';
-        const data = {
-            enterprise: {
-                members: {
-                    totalCount: 1,
-                    nodes: [mockUser1]
+        const response = {
+            data: {
+                user: {
+                    name: 'AI Humanoid',
+                    id: 'U_abcdef',
+                    login: 'ai_humanoid',
+                    enterprises: {
+                        totalCount: 1,
+                        pageInfo: {
+                            hasNextPage: false,
+                            cursor: 'abcdefg'
+                        },
+                        nodes: [
+                            {
+                                id: 'EUA_abcdef',
+                                name: 'AI Humanoid',
+                                slug: 'slug'
+                            }
+                        ]
+                    }
                 }
             }
         };
 
-        githubGql.sdGql.query.resolves({ data });
+        githubGql.sdGql.query.resolves(response);
 
         const result = await githubGql.getEnterpriseUserAccount({
             slug,
@@ -78,27 +93,35 @@ describe('GithubGraphQL', () => {
         });
 
         assert.deepEqual(result, {
+            login,
             type: 'EnterpriseUserAccount'
         });
         assert.calledWith(githubGql.sdGql.query, {
             query: queries.GetEnterpriseUserAccount,
-            variables: { slug, query: login },
+            variables: { login },
             token
         });
     });
 
-    it('should return null if no enterprise user account', async () => {
+    it('should return null if no user is not part of enterprise', async () => {
         const slug = 'slug';
         const login = 'ai_humanoid';
-        const data = {
-            enterprise: {
-                members: {
-                    totalCount: 0
+        const response = {
+            data: {
+                user: {
+                    name: 'AI Humanoid',
+                    id: 'U_abcdef',
+                    login: 'ai_humanoid',
+                    enterprises: null
                 }
+            },
+            errors: {
+                type: 'FORBIDDEN',
+                path: ['user', 'enterprises']
             }
         };
 
-        githubGql.sdGql.query.resolves({ data });
+        githubGql.sdGql.query.resolves(response);
 
         const result = await githubGql.getEnterpriseUserAccount({
             slug,
@@ -109,7 +132,31 @@ describe('GithubGraphQL', () => {
         assert.equal(result, null);
         assert.calledWith(githubGql.sdGql.query, {
             query: queries.GetEnterpriseUserAccount,
-            variables: { slug, query: login },
+            variables: { login },
+            token
+        });
+    });
+
+    it('should return null if no user does not exists', async () => {
+        const slug = 'slug';
+        const login = 'ai_humanoid';
+        const response = {
+            data: {
+                user: null
+            }
+        };
+
+        githubGql.sdGql.query.resolves(response);
+        const result = await githubGql.getEnterpriseUserAccount({
+            slug,
+            login,
+            token
+        });
+
+        assert.equal(result, null);
+        assert.calledWith(githubGql.sdGql.query, {
+            query: queries.GetEnterpriseUserAccount,
+            variables: { login },
             token
         });
     });

@@ -3,12 +3,22 @@
 const gql = require('graphql-tag');
 
 module.exports.GetEnterpriseUserAccount = gql`
-    query GetEnterpriseUserAccount($slug: String!, $query: String!) {
-        enterprise(slug: $slug) {
+    query GetEnterpriseUserAccount($login: String!) {
+        user(login: $login) {
             name
             id
-            members(query: $query, first: 1) {
+            login
+            enterprises(first: 100) {
                 totalCount
+                pageInfo {
+                    endCursor
+                    hasNextPage
+                }
+                nodes {
+                    id
+                    name
+                    slug
+                }
             }
         }
     }
