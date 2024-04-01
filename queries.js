@@ -3,30 +3,28 @@
 const gql = require('graphql-tag');
 
 module.exports.GetEnterpriseUserAccount = gql`
-    query GetEnterpriseUserAccount($slug: String!, $query: String!) {
-        enterprise(slug: $slug) {
+    query GetEnterpriseUserAccount($login: String!) {
+        user(login: $login) {
             name
             id
-            members(query: $query, first: 1, role: MEMBER) {
+            login
+            enterprises(first: 100) {
                 totalCount
+                pageInfo {
+                    endCursor
+                    hasNextPage
+                }
                 nodes {
-                    type: __typename
-                    ... on EnterpriseUserAccount {
-                        id
-                        name
-                        login
-                    }
-                    ... on User {
-                        id
-                        name
-                        login
-                    }
+                    id
+                    name
+                    slug
                 }
             }
         }
     }
 `;
 
+// needs `admin:enterprise` scope for EAU fragment
 module.exports.ListEnterpriseMembers = gql`
     query ListEnterpriseMembers($slug: String!, $cursor: String) {
         enterprise(slug: $slug) {
