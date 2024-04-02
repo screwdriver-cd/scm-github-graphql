@@ -40,12 +40,12 @@ class SDGraphQLClient {
             context: {
                 token
             },
-            json: JSON.stringify({ query, variables }),
+            json: { query, variables },
             ...options
         });
 
         if (res.body.errors) {
-            throw new Error(res.body.errors);
+            return null;
         }
 
         return res.body;
@@ -68,12 +68,12 @@ class SDGraphQLClient {
             context: {
                 token
             },
-            json: JSON.stringify({ mutation, variables }),
+            json: { mutation, variables },
             ...options
         });
 
         if (res.body.errors) {
-            throw new Error(res.body.errors);
+            return null;
         }
 
         return res.body;
