@@ -44,10 +44,6 @@ class SDGraphQLClient {
             ...options
         });
 
-        if (res.body.errors) {
-            return null;
-        }
-
         return res.body;
     }
 
@@ -71,10 +67,6 @@ class SDGraphQLClient {
             json: { mutation, variables },
             ...options
         });
-
-        if (res.body.errors) {
-            return null;
-        }
 
         return res.body;
     }

@@ -31,7 +31,6 @@
     "sinon": "^9.0.0"
   },
   "dependencies": {
-    "graphql-tag": "^2.12.6",
     "rewiremock": "^3.14.5",
     "screwdriver-request": "^2.0.1"
   },
