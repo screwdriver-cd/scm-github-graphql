@@ -1,8 +1,6 @@
 'use strict';
 
-const gql = require('graphql-tag');
-
-module.exports.GetEnterpriseUserAccount = gql`
+module.exports.GetEnterpriseUserAccount = `
     query GetEnterpriseUserAccount($login: String!) {
         user(login: $login) {
             name
@@ -25,7 +23,7 @@ module.exports.GetEnterpriseUserAccount = gql`
 `;
 
 // needs `admin:enterprise` scope for EAU fragment
-module.exports.ListEnterpriseMembers = gql`
+module.exports.ListEnterpriseMembers = `
     query ListEnterpriseMembers($slug: String!, $cursor: String) {
         enterprise(slug: $slug) {
             name
@@ -68,7 +66,7 @@ module.exports.ListEnterpriseMembers = gql`
     }
 `;
 
-module.exports.GetUser = gql`
+module.exports.GetUser = `
     query GetUser($login: String!) {
         user(login: $login) {
             name
