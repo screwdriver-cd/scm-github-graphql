@@ -220,11 +220,7 @@ describe('GithubGraphQL', () => {
 
         githubGql.sdGql.query = sinon.stub().resolves();
 
-        githubGql.sdGql.query
-            .onFirstCall()
-            .resolves({ data: data1 })
-            .onSecondCall()
-            .resolves({ data: data2 });
+        githubGql.sdGql.query.onFirstCall().resolves({ data: data1 }).onSecondCall().resolves({ data: data2 });
 
         const result = await githubGql.listEnterpriseMembers({
             slug,
