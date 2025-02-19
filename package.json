@@ -1,6 +1,6 @@
 {
   "name": "screwdriver-scm-github-graphql",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Github GraphQL SCM for Screwdriver",
   "main": "index.js",
   "scripts": {
@@ -23,8 +23,8 @@
   "devDependencies": {
     "rewiremock": "^3.14.5",
     "chai": "^4.3.6",
-    "eslint": "^7.32.0",
-    "eslint-config-screwdriver": "^5.0.1",
+    "eslint": "^8.57.0",
+    "eslint-config-screwdriver": "^8.0.0",
     "mocha": "^10.3.0",
     "mocha-multi-reporters": "^1.5.1",
     "mocha-sonarqube-reporter": "^1.0.2",
@@ -32,7 +32,7 @@
     "sinon": "^9.0.0"
   },
   "dependencies": {
-    "screwdriver-request": "^2.0.1"
+    "screwdriver-request": "^3.0.0"
   },
   "release": {
     "branches": ["main"],
