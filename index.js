@@ -7,11 +7,11 @@ class GithubScmGraphQL {
     /**
      * constructor
      * @param {Object} config            The config object
-     * @param {String} config.graphQlUrl The graphql url
+     * @param {String} config.graphqlUrl The graphql url
      */
     constructor(config) {
         this.sdGql = new SDGraphQLClient({
-            graphqlUrl: config.graphQlUrl || 'https://api.github.com/graphql'
+            graphqlUrl: config.graphqlUrl || 'https://api.github.com/graphql'
         });
     }
 
